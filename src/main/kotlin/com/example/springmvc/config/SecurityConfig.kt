@@ -54,11 +54,11 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
             .and()
             .logout().permitAll()
 
-        http.headers().cacheControl().disable()
-        http.headers().xssProtection().block(false)
-        http.headers().httpStrictTransportSecurity().includeSubDomains(true).preload(true).maxAgeInSeconds(31536000)
-
-        http.headers().referrerPolicy(ReferrerPolicyHeaderWriter.ReferrerPolicy.SAME_ORIGIN)
-        http.headers().frameOptions().sameOrigin()
+//        http.headers().cacheControl().disable()
+//        http.headers().xssProtection().block(false)
+//        http.headers().httpStrictTransportSecurity().includeSubDomains(true).preload(true).maxAgeInSeconds(31536000)
+//
+//        http.headers().referrerPolicy(ReferrerPolicyHeaderWriter.ReferrerPolicy.SAME_ORIGIN)
+//        http.headers().frameOptions().sameOrigin()
     }
 }
