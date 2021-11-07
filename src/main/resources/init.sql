@@ -17,8 +17,8 @@ CREATE TABLE users_roles (
 );
 
 INSERT INTO role (name) VALUES ('USER');
-INSERT INTO role (name) VALUES ('ROLE_APP');
-INSERT INTO role (name) VALUES ('ROLE_API');
+INSERT INTO role (name) VALUES ('APP_ROLE');
+INSERT INTO role (name) VALUES ('API_ROLE');
 INSERT INTO role (name) VALUES ('ADMIN');
 
 INSERT INTO userr (username, password, enabled, email) VALUES ('patrick', '$2a$10$cTUErxQqYVyU2qmQGIktpup5chLEdhD2zpzNEyYqmxrHHJbSNDOG.', '1', '1@mail.ru');
