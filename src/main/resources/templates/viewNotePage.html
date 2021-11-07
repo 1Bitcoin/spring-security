@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Запись</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>id</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Address</th>
+        <th>Phone number</th>
+    </tr>
+    <tr th:each="mapItem:${result}">
+        <td th:utext="${mapItem.key}">undefined</td>
+        <td th:utext="${mapItem.value.name}">undefined</td>
+        <td th:utext="${mapItem.value.surname}">undefined</td>
+        <td th:utext="${mapItem.value.address}">undefined</td>
+        <td th:utext="${mapItem.value.telephone}">undefined</td>
+    </tr>
+</table>
+</body>
+</html>

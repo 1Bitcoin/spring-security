@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Результат операции</title>
+</head>
+
+<body>
+<div th:text="${result}"></div>
+<p>/app/add добавление записи </p>
+<p>/app/list просмотр записей и поиск если будет переданы query параметры запроса</p>
+<p>/app/{id}/view просмотр конкретной записи</p>
+<p>/app/{id}/edit редактирование конкретной записи</p>
+<p>/app/{id}/delete удаление конкретной записи</p>
+</body>
+</html>
