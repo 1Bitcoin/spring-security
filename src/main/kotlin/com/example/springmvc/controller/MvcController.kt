@@ -3,13 +3,10 @@ package com.example.springmvc.controller
 import com.example.springmvc.DAO.BookNote
 import com.example.springmvc.service.AddressBookService
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.security.access.prepost.PreAuthorize
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
 
-@EnableGlobalMethodSecurity(prePostEnabled=true)
 @Controller
 @RequestMapping("/app")
 class MvcController @Autowired constructor(val addressBookService: AddressBookService) {
@@ -42,7 +39,6 @@ class MvcController @Autowired constructor(val addressBookService: AddressBookSe
         return "viewNotePage"
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{id}/delete")
     fun deleteNote(@PathVariable id: String, model: Model): String {
         addressBookService.deleteNote(id.toInt())

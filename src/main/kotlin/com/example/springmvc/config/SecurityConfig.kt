@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository
+import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter
 
 
 @EnableWebSecurity
@@ -39,17 +41,24 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
 
     @Throws(Exception::class)
     override fun configure(http: HttpSecurity) {
-        http.authorizeRequests()
-            .antMatchers("/").permitAll()//.hasAnyAuthority("USER", "APP", "API" ,"ADMIN")
-            .antMatchers("/app/**").permitAll()//.hasAnyAuthority("ADMIN", "APP")
-            .antMatchers("/api/**").permitAll()//.hasAnyAuthority("ADMIN", "API")
-            .antMatchers("/**").permitAll()//.hasAuthority("ADMIN")
+        http
+            .csrf().disable()
+            .authorizeRequests()
+            .antMatchers("/").permitAll()
+            .antMatchers("/app/**").hasAnyAuthority("ADMIN", "ROLE_APP")
+            .antMatchers("/api/**").hasAnyAuthority("ADMIN", "ROLE_API")
+            .antMatchers("/**").hasAuthority("ADMIN")
             .anyRequest().authenticated()
             .and()
             .formLogin().permitAll()
             .and()
             .logout().permitAll()
-            .and()
-            .exceptionHandling().accessDeniedPage("/403")
+
+        http.headers().cacheControl().disable()
+        http.headers().xssProtection().block(false)
+        http.headers().httpStrictTransportSecurity().includeSubDomains(true).preload(true).maxAgeInSeconds(31536000)
+
+        http.headers().referrerPolicy(ReferrerPolicyHeaderWriter.ReferrerPolicy.SAME_ORIGIN)
+        http.headers().frameOptions().sameOrigin()
     }
 }

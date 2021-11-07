@@ -4,7 +4,7 @@ import javax.persistence.*
 
 
 @Entity
-@Table(name = "roles")
+@Table(name = "role")
 class Role {
     @Id
     @Column(name = "role_id")

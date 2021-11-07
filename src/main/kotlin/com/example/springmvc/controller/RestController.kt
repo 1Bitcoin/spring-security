@@ -5,13 +5,10 @@ import com.example.springmvc.service.AddressBookService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.security.access.prepost.PreAuthorize
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.bind.annotation.RestController
 import java.util.concurrent.ConcurrentHashMap
 
-@EnableGlobalMethodSecurity(prePostEnabled=true)
 @RestController
 @RequestMapping("/api")
 class RestController @Autowired constructor(private val addressBookService: AddressBookService) {
@@ -44,7 +41,6 @@ class RestController @Autowired constructor(private val addressBookService: Addr
         return ResponseEntity(tmp, HttpStatus.OK)
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}/delete")
     fun deleteNote(@PathVariable id: String): ResponseEntity<BookNote> {
         return ResponseEntity(addressBookService.deleteNote(id.toInt()), HttpStatus.OK)
